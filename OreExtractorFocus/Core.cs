@@ -1,6 +1,5 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using BepInEx.Logging;
 using HarmonyLib;
 using System.Reflection;
 using DespLib.Utilities;
@@ -12,7 +11,7 @@ If you have any Bugfixes may contact me with it and i will credit you in the nex
 
 namespace OreExtractorFocus
 {
-    [BepInPlugin("Desperationfighter.OreExtractorFocus", "Ore Extractor Focus", "1.0.0")]
+    [BepInPlugin("Desperationfighter.OreExtractorFocus", "Ore Extractor Focus", "1.0.1")]
     public partial class BepInExPlugin : BaseUnityPlugin
     {
         public static ConfigEntry<int> UseStage;

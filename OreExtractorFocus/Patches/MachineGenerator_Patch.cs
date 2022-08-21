@@ -40,9 +40,8 @@ namespace OreExtractorFocus.Patches
         {
             if (!__instance.name.Contains("OreExtractor")) return true;
 
-
             //------------------------------------------------------------------------------------------------
-            
+            /*
             DFLogger.DFLogDebug($"prefix runs for MachineGenerator.GenerateAnObject - {__instance.name}");
             DFLogger.DFLogDebug($"Data - oreAllowedToMine");
             foreach (DataConfig.OreVeinIdentifer data in __instance.oreAllowedToMine)
@@ -54,19 +53,18 @@ namespace OreExtractorFocus.Patches
             {
                 DFLogger.DFLogDebug($"Name: {data.name} - hideinCrafter: {data.hideInCrafter} - ID {data.id}");
             }
-            //DFLogger.DFLogDebug($"Data - miningRays");
-            //DFLogger.DFLogDebug($"{__instance.miningRays}");
-            
+            DFLogger.DFLogDebug($"Data - miningRays");
+            DFLogger.DFLogDebug($"{__instance.miningRays}");
+            */
             //------------------------------------------------------------------------------------------------
 
             if (__instance.groupDatas[(__instance.groupDatas.Count - 1)].id == "Iron")
             {
-                DFLogger.DFLogDebug($"Iron Extractor found");
+                //Default Extractor do not neet changes
                 return true;
             }
             else if (BepInExPlugin.UseStage.Value == 1)
             {
-                DFLogger.DFLogDebug($"Stage 1 Way");
                 //As Count - 1 always returns the Primary Ore this will always just extract this one.
                 WorldObject worldObject = WorldObjectsHandler.CreateNewWorldObject(GroupsHandler.GetGroupViaId(__instance.groupDatas[(__instance.groupDatas.Count - 1)].id), 0);
                 __instance.inventory.AddItem(worldObject);
@@ -74,7 +72,6 @@ namespace OreExtractorFocus.Patches
             }
             else if(BepInExPlugin.UseStage.Value == 2)
             {
-                DFLogger.DFLogDebug($"Stage 2 Way");
                 // In Szenario 2 the core Point is to dramaticly increase the return of the Primary ore while there is still a small by producte.
                 // to archive this there is a 1 of x chance that the Original Code runs and generate a byproducte (or the primary Ore by luck).
                 int maxrandomrange = BepInExPlugin.Extractionluck.Value;
