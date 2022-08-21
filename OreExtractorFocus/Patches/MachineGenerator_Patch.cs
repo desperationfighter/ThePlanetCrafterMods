@@ -42,30 +42,31 @@ namespace OreExtractorFocus.Patches
 
 
             //------------------------------------------------------------------------------------------------
-            /*
+            
             DFLogger.DFLogDebug($"prefix runs for MachineGenerator.GenerateAnObject - {__instance.name}");
-            Debug.Log("");
-            Debug.Log($"Data - Name");
-            Debug.Log($"{__instance.name}");
-            Debug.Log($"Data - oreAllowedToMine");
+            DFLogger.DFLogDebug($"Data - oreAllowedToMine");
             foreach (DataConfig.OreVeinIdentifer data in __instance.oreAllowedToMine)
             {
-                Debug.Log($"{data.ToString()}");
+                DFLogger.DFLogDebug($"{data.ToString()}");
             }
-            Debug.Log($"Data - groupDatas");
+            DFLogger.DFLogDebug($"Data - groupDatas");
             foreach (GroupData data in __instance.groupDatas)
             {
-                Debug.Log($"Name: {data.name} - hideinCrafter: {data.hideInCrafter} - ID {data.id}");
+                DFLogger.DFLogDebug($"Name: {data.name} - hideinCrafter: {data.hideInCrafter} - ID {data.id}");
             }
-            Debug.Log($"Data - spawnEveryXSec");
-            Debug.Log($"{__instance.spawnEveryXSec}");
-            Debug.Log($"Data - miningRays");
-            Debug.Log($"{__instance.miningRays}");
-            */
+            //DFLogger.DFLogDebug($"Data - miningRays");
+            //DFLogger.DFLogDebug($"{__instance.miningRays}");
+            
             //------------------------------------------------------------------------------------------------
 
-            if (BepInExPlugin.UseStage.Value == 1)
+            if (__instance.groupDatas[(__instance.groupDatas.Count - 1)].id == "Iron")
             {
+                DFLogger.DFLogDebug($"Iron Extractor found");
+                return true;
+            }
+            else if (BepInExPlugin.UseStage.Value == 1)
+            {
+                DFLogger.DFLogDebug($"Stage 1 Way");
                 //As Count - 1 always returns the Primary Ore this will always just extract this one.
                 WorldObject worldObject = WorldObjectsHandler.CreateNewWorldObject(GroupsHandler.GetGroupViaId(__instance.groupDatas[(__instance.groupDatas.Count - 1)].id), 0);
                 __instance.inventory.AddItem(worldObject);
@@ -73,6 +74,7 @@ namespace OreExtractorFocus.Patches
             }
             else if(BepInExPlugin.UseStage.Value == 2)
             {
+                DFLogger.DFLogDebug($"Stage 2 Way");
                 // In Szenario 2 the core Point is to dramaticly increase the return of the Primary ore while there is still a small by producte.
                 // to archive this there is a 1 of x chance that the Original Code runs and generate a byproducte (or the primary Ore by luck).
                 int maxrandomrange = BepInExPlugin.Extractionluck.Value;
