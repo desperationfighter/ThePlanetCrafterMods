@@ -1,12 +1,19 @@
 ﻿using BepInEx.Logging;
 using System;
 using System.Reflection;
+using SpaceCraft;
+using HarmonyLib;
+using System.Collections.Generic;
+using MijuTools;
+
 
 namespace DespLib.Utilities
 {
     public static class DFLogger
     {
-        static ManualLogSource logger;
+        public static ManualLogSource logger;
+        public static bool debugloggingenabled;
+        private static Assembly assembly => Assembly.GetExecutingAssembly();
 
         public enum DFLogLevel
         {
@@ -45,41 +52,29 @@ namespace DespLib.Utilities
 
         public static void DFLog(string Message,DFLogger.DFLogLevel dFLogger)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            //Debug.Log($"[{assembly.FullName}] - [{dFLogger}] : {Message}");
-
             switch(dFLogger)
             {
                 case DFLogLevel.Debug:
-                    Type type = assembly.GetType("BepInExPlugin");
-                    PropertyInfo propertyInfo = type.GetProperty("Debuglogging");
-                    if(propertyInfo.PropertyType == typeof(bool))
+                    if(debugloggingenabled)
                     {
-                        if((bool)propertyInfo.GetValue("Debuglogging"))
-                        {
-                            logger.Log(LogLevel.Debug, Message);
-                        }
-                        else
-                        {
-                            logger.Log(LogLevel.Debug, "error on debug logging 2");
-                        }
-                    }
-                    else
-                    {
-                        logger.Log(LogLevel.Debug, "error on debug logging");
+                        logger.Log(LogLevel.Debug,$"[{assembly.GetName().Name}] [{dFLogger.ToString()}] : {Message} [/{dFLogger.ToString()}]");
                     }
                     break;
                 case DFLogLevel.Information:
-                    logger.Log(LogLevel.Info, Message);
+                    logger.Log(LogLevel.Info, $"[{assembly.GetName().Name}] [{dFLogger.ToString()}] : {Message} [/{dFLogger.ToString()}]");
                     break;
                 case DFLogLevel.Warning:
-                    logger.Log(LogLevel.Warning, Message);
+                    logger.Log(LogLevel.Warning, $"[{assembly.GetName().Name}] [{dFLogger.ToString()}] : {Message} [/{dFLogger.ToString()}]");
                     break;
                 case DFLogLevel.Error:
-                    logger.Log(LogLevel.Error, Message);
+                    logger.Log(LogLevel.Error, $"[{assembly.GetName().Name}] [{dFLogger.ToString()}] : {Message} [/{dFLogger.ToString()}]");
                     break;
                 case DFLogLevel.Fatal:
-                    logger.Log(LogLevel.Fatal, Message);
+                    logger.Log(LogLevel.Fatal, $"[{assembly.GetName().Name}] [{dFLogger.ToString()}] : {Message} [/{dFLogger.ToString()}]");
+                    if (Managers.GetManager<PopupsHandler>() != null)
+                    {
+                        AccessTools.FieldRefAccess<PopupsHandler, List<PopupData>>(Managers.GetManager<PopupsHandler>(), "popupsToPop").Add(new PopupData(null, $"Fatal Error in Mod {assembly.GetName().Name} - See Logs for Details", 2));
+                    }
                     break;
             }
         }

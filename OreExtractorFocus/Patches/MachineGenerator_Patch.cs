@@ -16,10 +16,17 @@ namespace OreExtractorFocus.Patches
         static bool Prefix(MachineGenerator __instance)
         {
             if (!__instance.name.Contains("OreExtractor")) return true;
-            DFLogger.DFLogDebug($"prefix runs for MachineGenerator.SetGeneratorInventory - {__instance.name}") ;
-            DFLogger.DFLogDebug($"Intervall Spawn set to - {__instance.spawnEveryXSec} - before");
-            __instance.spawnEveryXSec = BepInExPlugin.ExtractionInterval.Value;
-            DFLogger.DFLogDebug($"Intervall Spawn set to - {__instance.spawnEveryXSec} - after");
+            //DFLogger.DFLogDebug($"prefix runs for MachineGenerator.SetGeneratorInventory - {__instance.name}") ;
+            //DFLogger.DFLogDebug($"Intervall Spawn set to - {__instance.spawnEveryXSec} - before");
+            if (!__instance.name.Contains("OreExtractor1"))
+            {
+                __instance.spawnEveryXSec = BepInExPlugin.ExtractionIntervaltier1.Value;
+            }
+            else if (!__instance.name.Contains("OreExtractor2"))
+            {
+                __instance.spawnEveryXSec = BepInExPlugin.ExtractionIntervaltier2.Value;
+            }
+            //DFLogger.DFLogDebug($"Intervall Spawn set to - {__instance.spawnEveryXSec} - after");
             return true;
         }
     }
@@ -32,10 +39,11 @@ namespace OreExtractorFocus.Patches
         static bool Prefix(MachineGenerator __instance)
         {
             if (!__instance.name.Contains("OreExtractor")) return true;
-            DFLogger.DFLogDebug($"prefix runs for MachineGenerator.GenerateAnObject - {__instance.name}");
+
 
             //------------------------------------------------------------------------------------------------
             /*
+            DFLogger.DFLogDebug($"prefix runs for MachineGenerator.GenerateAnObject - {__instance.name}");
             Debug.Log("");
             Debug.Log($"Data - Name");
             Debug.Log($"{__instance.name}");
@@ -68,12 +76,8 @@ namespace OreExtractorFocus.Patches
                 // In Szenario 2 the core Point is to dramaticly increase the return of the Primary ore while there is still a small by producte.
                 // to archive this there is a 1 of x chance that the Original Code runs and generate a byproducte (or the primary Ore by luck).
                 int maxrandomrange = BepInExPlugin.Extractionluck.Value;
-                if(maxrandomrange <= 0)
-                { 
-                    maxrandomrange = 1;
-                }
-                int random = UnityEngine.Random.Range(1, maxrandomrange);
-                if(random == 1)
+                int random = UnityEngine.Random.Range(0, maxrandomrange);
+                if (random == 0)
                 {
                     WorldObject worldObject = WorldObjectsHandler.CreateNewWorldObject(GroupsHandler.GetGroupViaId(__instance.groupDatas[UnityEngine.Random.Range(0, __instance.groupDatas.Count)].id), 0);
                     __instance.inventory.AddItem(worldObject);

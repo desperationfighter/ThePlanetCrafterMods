@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="com.mijugames.miju-tools">
       <HintPath>..\..\..\..\..\Games_Steam\steamapps\common\The Planet Crafter\Planet Crafter_Data\Managed\com.mijugames.miju-tools.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
