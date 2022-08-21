@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OreExtractorFocus", "OreExtractorFocus\OreExtractorFocus.csproj", "{3B85B54F-5551-4B88-A828-D11B2F230060}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DespLib", "DespLib\DespLib.shproj", "{1E02BEF3-C725-45D3-9296-8005B0B09094}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B85B54F-5551-4B88-A828-D11B2F230060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B85B54F-5551-4B88-A828-D11B2F230060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B85B54F-5551-4B88-A828-D11B2F230060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B85B54F-5551-4B88-A828-D11B2F230060}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54F11736-685E-496F-A201-78E75AF84A77}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DespLib\DespLib.projitems*{1e02bef3-c725-45d3-9296-8005b0b09094}*SharedItemsImports = 13
+		DespLib\DespLib.projitems*{3b85b54f-5551-4b88-a828-d11b2f230060}*SharedItemsImports = 4
+	EndGlobalSection
+EndGlobal
