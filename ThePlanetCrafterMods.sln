@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OreExtractorFocus", "OreExt
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DespLib", "DespLib\DespLib.shproj", "{1E02BEF3-C725-45D3-9296-8005B0B09094}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeteverythingfallonDeath", "LeteverythingfallonDeath\LeteverythingfallonDeath.csproj", "{3551622C-9418-470B-BF94-2DB95148E642}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{3B85B54F-5551-4B88-A828-D11B2F230060}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B85B54F-5551-4B88-A828-D11B2F230060}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B85B54F-5551-4B88-A828-D11B2F230060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3551622C-9418-470B-BF94-2DB95148E642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3551622C-9418-470B-BF94-2DB95148E642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3551622C-9418-470B-BF94-2DB95148E642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3551622C-9418-470B-BF94-2DB95148E642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
