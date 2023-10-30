@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using SpaceCraft;
 using DespLib.Utilities;
+using System.Runtime.Remoting.Messaging;
 
 namespace OreExtractorFocus.Patches
 {
@@ -15,9 +16,22 @@ namespace OreExtractorFocus.Patches
         [HarmonyPrefix]
         static bool Prefix(MachineGenerator __instance)
         {
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix runs for MachineGenerator.SetGeneratorInventory - OreExtractor1(Clone)[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : Intervall Spawn set to - 70 - before[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : Intervall Spawn set to - 75 - after[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix runs for MachineGenerator.SetGeneratorInventory - OreExtractor2(Clone)[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : Intervall Spawn set to - 65 - before[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : Intervall Spawn set to - 80 - after[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix runs for MachineGenerator.SetGeneratorInventory - OreExtractor3(Clone)[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : Intervall Spawn set to - 75 - before[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : Intervall Spawn set to - 80 - after[/ Debug]
+
+            //Make sure to only Patch the Extractors
             if (!__instance.name.Contains("OreExtractor")) return true;
-            //DFLogger.DFLogDebug($"prefix runs for MachineGenerator.SetGeneratorInventory - {__instance.name}") ;
-            //DFLogger.DFLogDebug($"Intervall Spawn set to - {__instance.spawnEveryXSec} - before");
+            
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.SetGeneratorInventory) : Instance Name> {__instance.name}");
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.SetGeneratorInventory) : Intervall Spawn set to - {__instance.spawnEveryXSec} - before");
+
             if (!__instance.name.Contains("OreExtractor1"))
             {
                 __instance.spawnEveryXSec = BepInExPlugin.ExtractionIntervaltier1.Value;
@@ -26,7 +40,13 @@ namespace OreExtractorFocus.Patches
             {
                 __instance.spawnEveryXSec = BepInExPlugin.ExtractionIntervaltier2.Value;
             }
-            //DFLogger.DFLogDebug($"Intervall Spawn set to - {__instance.spawnEveryXSec} - after");
+            else if (!__instance.name.Contains("OreExtractor3"))
+            {
+                __instance.spawnEveryXSec = BepInExPlugin.ExtractionIntervaltier3.Value;
+            }
+
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.SetGeneratorInventory) : Intervall Spawn set to - {__instance.spawnEveryXSec} - after");
+            
             return true;
         }
     }
@@ -38,25 +58,68 @@ namespace OreExtractorFocus.Patches
         [HarmonyPrefix]
         static bool Prefix(MachineGenerator __instance)
         {
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : runs for MachineGenerator.GenerateAnObject - OreExtractor1(Clone)[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Header - oreAllowedToMine[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - tier1[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Header - groupDatas[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Cobalt - hideinCrafter > False - ID > Cobalt[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Silicon - hideinCrafter > False - ID > Silicon[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Titanium - hideinCrafter > False - ID > Titanium[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Magnesium - hideinCrafter > False - ID > Magnesium[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Iron - hideinCrafter > False - ID > Iron[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Iron - hideinCrafter > False - ID > Iron[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - miningRays-> 1[/ Debug]
+
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : runs for MachineGenerator.GenerateAnObject - OreExtractor2(Clone)[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Header - oreAllowedToMine[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - tier1[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - tier2[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Header - groupDatas[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Cobalt - hideinCrafter > False - ID > Cobalt[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Silicon - hideinCrafter > False - ID > Silicon[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Titanium - hideinCrafter > False - ID > Titanium[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Magnesium - hideinCrafter > False - ID > Magnesium[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - Name > Minable - Iron - hideinCrafter > False - ID > Iron[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(GenerateAnObject) : Data - miningRays-> 4[/ Debug]
+
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Instance Name> OreExtractor3(Clone)[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Header - oreAllowedToMine[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Data - tier1[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Data - tier2[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Header - groupDatas[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Data - Name > Minable - Aluminium - hideinCrafter > False - ID > Aluminium[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Data - Name > Minable - Aluminium - hideinCrafter > False - ID > Aluminium[/ Debug]
+            //[Debug: Ore Extractor Focus][OreExtractorFocus][Debug] : prefix(MachineGenerator.GenerateAnObject) : Data - miningRays-> 1[/ Debug]
+
+            //Make sure to only Patch the Extractors
             if (!__instance.name.Contains("OreExtractor")) return true;
 
             //------------------------------------------------------------------------------------------------
-            /*
-            DFLogger.DFLogDebug($"prefix runs for MachineGenerator.GenerateAnObject - {__instance.name}");
-            DFLogger.DFLogDebug($"Data - oreAllowedToMine");
+            //------------------------------------------------------------------------------------------------
+            // /*
+
+            //Run a advanced Logging for Getting all Possible Configurations we need from an Extractor.
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Instance Name> {__instance.name}");
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Header - oreAllowedToMine");
+            
             foreach (DataConfig.OreVeinIdentifer data in __instance.oreAllowedToMine)
             {
-                DFLogger.DFLogDebug($"{data.ToString()}");
+                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - {data.ToString()}");
             }
-            DFLogger.DFLogDebug($"Data - groupDatas");
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Header - groupDatas");
             foreach (GroupData data in __instance.groupDatas)
             {
-                DFLogger.DFLogDebug($"Name: {data.name} - hideinCrafter: {data.hideInCrafter} - ID {data.id}");
+                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - Name> {data.name} - hideinCrafter> {data.hideInCrafter} - ID> {data.id}");
             }
-            DFLogger.DFLogDebug($"Data - miningRays");
-            DFLogger.DFLogDebug($"{__instance.miningRays}");
-            */
+            
+            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - miningRays -> {__instance.miningRays}");
+
+            // */
             //------------------------------------------------------------------------------------------------
+            //------------------------------------------------------------------------------------------------
+
+            //The Extractor 3 has already a Focus Logic. So let us skip here.
+            if (__instance.name.Contains("OreExtractor3")) return true;
 
             if (__instance.groupDatas[(__instance.groupDatas.Count - 1)].id == "Iron")
             {
@@ -90,6 +153,7 @@ namespace OreExtractorFocus.Patches
             }
             else
             {
+                //In case of any kind of Error. Just proceed with the Original so we at least do not break something.
                 return true;
             }
         }
