@@ -3,9 +3,14 @@ using BepInEx.Logging;
 using HarmonyLib;
 using System.Reflection;
 
+/*
+License: Reuploading of any File Content is prohibited either Original, Modified or Partly for other Projects.
+If you have any Bugfixes may contact me with it and i will credit you in the next release.
+ */
+
 namespace LeteverythingfallonDeath
 {
-    [BepInPlugin("Desperationfighter.Planetcrafter.LeteverythingfallonDeath", "Let everything fall on Death", "1.0.0.0")]
+    [BepInPlugin("Desperationfighter.TPC.LeteverythingfallonDeath", "Let everything fall on Death", "1.0.2.0")]
     public partial class Plugin : BaseUnityPlugin
     {
         public new static ManualLogSource Logger { get; private set; }
