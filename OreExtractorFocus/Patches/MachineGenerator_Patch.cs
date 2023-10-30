@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using SpaceCraft;
 using DespLib.Utilities;
-using System.Runtime.Remoting.Messaging;
 
 namespace OreExtractorFocus.Patches
 {
@@ -98,21 +97,25 @@ namespace OreExtractorFocus.Patches
             //------------------------------------------------------------------------------------------------
             // /*
 
-            //Run a advanced Logging for Getting all Possible Configurations we need from an Extractor.
-            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Instance Name> {__instance.name}");
-            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Header - oreAllowedToMine");
-            
-            foreach (DataConfig.OreVeinIdentifer data in __instance.oreAllowedToMine)
+            //Even the Logger does not does Deeplogging it doesn't make sense to do all the Calls when not really needed.
+            if (BepInExPlugin.Debuglogging.Value)
             {
-                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - {data.ToString()}");
+                //Run a advanced Logging for Getting all Possible Configurations we need from an Extractor.
+                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Instance Name> {__instance.name}");
+                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Header - oreAllowedToMine");
+
+                foreach (DataConfig.OreVeinIdentifer data in __instance.oreAllowedToMine)
+                {
+                    DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - {data.ToString()}");
+                }
+                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Header - groupDatas");
+                foreach (GroupData data in __instance.groupDatas)
+                {
+                    DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - Name> {data.name} - hideinCrafter> {data.hideInCrafter} - ID> {data.id}");
+                }
+
+                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - miningRays -> {__instance.miningRays}");
             }
-            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Header - groupDatas");
-            foreach (GroupData data in __instance.groupDatas)
-            {
-                DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - Name> {data.name} - hideinCrafter> {data.hideInCrafter} - ID> {data.id}");
-            }
-            
-            DFLogger.DFLogDebug($"prefix (MachineGenerator.GenerateAnObject) : Data - miningRays -> {__instance.miningRays}");
 
             // */
             //------------------------------------------------------------------------------------------------
