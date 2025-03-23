@@ -9,8 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LeteverythingfallonDeath</RootNamespace>
     <AssemblyName>LeteverythingfallonDeath</AssemblyName>
-	<BepInExPluginGuid>desperationfighter.TPC.$(AssemblyName)</BepInExPluginGuid>
-	<BepInExPluginName>$(AssemblyName)</BepInExPluginName>
+    <BepInExPluginGuid>desperationfighter.TPC.$(AssemblyName)</BepInExPluginGuid>
+    <BepInExPluginName>$(AssemblyName)</BepInExPluginName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -58,6 +58,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Netcode.Runtime">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\The Planet Crafter\Planet Crafter_Data\Managed\Unity.Netcode.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\The Planet Crafter\Planet Crafter_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>

@@ -11,8 +11,8 @@ If you have any Bugfixes may contact me with it and i will credit you in the nex
 
 namespace OreExtractorFocus
 {
-    [BepInPlugin("Desperationfighter.TPC.OreExtractorFocus", "Ore Extractor Focus", "1.2.1.0")]
-    public class BepInExPlugin : BaseUnityPlugin
+    [BepInPlugin("Desperationfighter.TPC.OreExtractorFocus", "Ore Extractor Focus", "1.3.0.0")]
+    public class Plugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> ModisActive;
         public static ConfigEntry<int> UseStage;
@@ -22,9 +22,13 @@ namespace OreExtractorFocus
         public static ConfigEntry<int> ExtractionIntervaltier3;
         public static ConfigEntry<bool> Debuglogging;
 
+        public const int OriginalExtractionIntervaltier1 = 70;
+        public const int OriginalExtractionIntervaltier2 = 65;
+        public const int OriginalExtractionIntervaltier3 = 75;
+
         private void Awake()
         {
-            ModisActive = Config.Bind("1_General", "ModisActive", true, "Set if the Mod should running or not. If you don't want to remove Files or for Later Ingame Menu");
+            ModisActive = Config.Bind("1_General", "ModisActive", true, "Set if the Mod should running or not. If you don't want to remove Files or for Later Ingame Menu. Please reload your Savegame after Change as there are Setting that only apply once when World is loaded up.");
             UseStage = Config.Bind("1_General", "UseStage", 2, "Set wanted usage Methode. " +
                 "0 = Just adjust Interval and let everything else Vanilla; " +
                 "1 = Extract only Primary Ore and NEVER get any by Product; " +
